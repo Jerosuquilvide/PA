@@ -34,7 +34,7 @@
             <!-- <a class="nav-link active" aria-current="page" href="#">Active</a> -->
             <a class="nav-link" href="http://localhost/master-php/TP1.0/index">Incio</a>
             <a class="nav-link" href="#">Notas</a>
-            <?php if(!isset($_SESSION['log'])) : ?>
+            <?php if(!isset($_SESSION['log']) || $_SESSION['log'] == 'invalido') : ?>
             <a class="nav-link" href="http://localhost/master-php/TP1.0/scripts/login">Iniciar Sesion</a>
             <a class="nav-link" href="#">Registrarse</a>
             <?php  endif ?>
@@ -43,3 +43,4 @@
             <?php endif?>
         </nav>
     </div>
+    

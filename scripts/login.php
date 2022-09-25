@@ -1,6 +1,6 @@
 <?php require '../vistas/header.php' ;
-    
-?>
+;?>
+
 <div class="container p-5 my-5 border">
     <div class="row">
         <div class="col-sm-12">
@@ -18,6 +18,10 @@
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
+                <?php if(isset($_SESSION['log']) == 'invalido') : ?>
+                    <div class="alert alert-danger"><strong>Usuario o Cotraseña incorrectos!!</strong> 
+                  </div>
+                 <?php endif ;?>   
                 <!-- <div class="form-check mb-3">
                     <div class="g-recaptcha" data-sitekey="6Ld7aR4iAAAAAPesU0eISDqKhFYcsbQNRJMDFtmw"></div>
                 </div> -->
