@@ -1,6 +1,6 @@
 <?php
     $usuario = "fcytuader";
-    $pass = "aa";
+    $pass = "programacionavanzada";
     
     if(isset($_POST)){
         if($_POST['user'] === $usuario && $_POST['pswd'] === $pass){ 
