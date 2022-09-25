@@ -38,7 +38,7 @@
             <a class="nav-link" href="http://localhost/master-php/TP1.0/scripts/login">Iniciar Sesion</a>
             <a class="nav-link" href="#">Registrarse</a>
             <?php  endif ?>
-            <?php if(isset($_SESSION['log']) && $_SESSION['log'] === 'valido') :?>
+            <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') :?>
                 <a class="nav-link" href="http://localhost/master-php/TP1.0/scripts/logout" >Cerrar Sesión</a>
             <?php endif?>
         </nav>
