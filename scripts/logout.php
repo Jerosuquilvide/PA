@@ -6,4 +6,4 @@ if (session_destroy()) {
      echo "Error al destruir la sesión";
  }
 
-     header("Location:"."http://localhost/master-php/TP1.0/index.php");
+     header("Location:"."../index.php");

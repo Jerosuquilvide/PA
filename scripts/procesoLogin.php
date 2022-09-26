@@ -8,10 +8,10 @@
             $_SESSION['log'] = 'valido';
             var_dump($_SESSION);
             
-            header("Location:"."http://localhost/master-php/TP1.0/index.php");
+            header("Location:"."../index.php");
         }else{
             $_SESSION['log'] = 'invalido';
-            header("Location:"."http://localhost/master-php/TP1.0/scripts/login.php");
+            header("Location:"."./login.php");
         }
         
     }

@@ -11,8 +11,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../scripts/helper.js"></script>
-    <!-- <link href="/assets/styles.css" rel="stylesheet"> -->
+    <!-- Link del css-->
+    <link rel="stylesheet" type="text/css" href="../assets/styles.css">
     <!-- Script del captcha-->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
