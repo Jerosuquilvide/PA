@@ -1,16 +1,8 @@
     <!-- Pie -->
 
-    <footer class="text-center footer-style bg-dark text-white foo">
-        <div class="container">
-            <div class="row">
-                <div>
-                    <h3>&copy 2022</h3>
-
-                </div>
-
-            </div>
-        </div>
-    </footer>
+    <footer style="position: fixed; bottom: 0px; width: 100%; height: 60px; background-color: black;">
+        <h3 class="text-center text-white">&copy 2022</h3>
+  </footer>
 
     </body>
 

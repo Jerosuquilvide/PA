@@ -12,17 +12,11 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/helper.js"></script>
-    <link href="../assets/styles.css" rel="stylesheet">
+    <!-- <link href="/assets/styles.css" rel="stylesheet"> -->
     <!-- Script del captcha-->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
-<style>
-    footer {
-        padding: 15px;
-        margin-bottom: 0px;
-        margin-top: 400px;
-    }
-</style>
+
 
 <body>
     <!-- Cabecera -->
