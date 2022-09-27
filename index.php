@@ -1,5 +1,5 @@
+<?php //session_start() ?>
 <?php
-//session_start();
 require './vistas/header.php';
 ?>
 <?php if (isset($_SESSION['log']) &&  $_SESSION['log'] == 'valido') : ?>

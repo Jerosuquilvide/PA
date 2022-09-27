@@ -1,3 +1,4 @@
+<?php //session_start() ?>
 <?php require '../vistas/header.php' ;
 ;?>
 
@@ -18,6 +19,7 @@
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
+                
                 <?php if(isset($_SESSION['log']) == 'invalido') : ?>
                     <div class="alert alert-danger"><strong>Usuario o Cotraseña incorrectos!!</strong> 
                   </div>
