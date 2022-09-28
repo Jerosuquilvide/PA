@@ -31,11 +31,11 @@
             <a class="nav-link" href="../index.php">Incio</a>
             <a class="nav-link" href="#">Notas</a>
             <?php if(!isset($_SESSION['log']) || $_SESSION['log'] == 'invalido') : ?>
-            <a class="nav-link" href="../scripts/login.php">Iniciar Sesion</a>
+            <a class="nav-link" href="./scripts/login">Iniciar Sesion</a>
             <a class="nav-link" href="#">Registrarse</a>
             <?php  endif ?>
             <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') :?>
-                <a class="nav-link" href="../scripts/logout.php" >Cerrar Sesión</a>
+                <a class="nav-link" href="./scripts/logout" >Cerrar Sesión</a>
             <?php endif?>
         </nav>
     </div>
