@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
         
-            <form action="http://localhost/master-php/TP1.0/scripts/procesoLogin.php" class="was-validated" method="POST">
+            <form action="../scripts/procesoLogin.php" class="was-validated" method="POST">
                 <div class="mb-3 mt-3">
                     <label for="user" class="form-label">Usuario:</label>
                     <input type="text" class="form-control" id="user" placeholder="Tu usuario" name="user" required>
