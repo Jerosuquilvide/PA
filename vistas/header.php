@@ -22,7 +22,7 @@
 
 <body>
     <!-- Cabecera -->
-    <div class="card">
+    <div class="card-header">
         <div class="p-3 bg-primary text-white text-center">
             <h1 class="card-title ">ToDo List<span class="glyphicon glyphicon-ok"></span></h1>
         </div>
