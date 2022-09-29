@@ -46,7 +46,7 @@
                         (!isset($_SESSION['log'])) || $_SESSION['log'] == 'invalido'): ?>
             <a class="nav-link" href="./scripts/login.php">Iniciar Sesion</a>
             <a class="nav-link" href="#">Registrarse</a>
-            <?php var_dump(strpos($_SERVER['REQUEST_URI'],'login.php')) ?>
+           
             <?php  endif ?>
             <!-- Renderizado condicional para Cerrar Sesion-->        
             <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') :?>
