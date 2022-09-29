@@ -1,6 +1,4 @@
-<?php //session_start() ?>
-<?php require '../vistas/header.php' ;
-;?>
+<?php require '../vistas/header.php';?>
 
 <div class="container p-5 my-5 border">
     <div class="row">

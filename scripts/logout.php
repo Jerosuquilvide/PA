@@ -1,6 +1,5 @@
-<?php session_start() ?>
 <?php
-
+    session_start();
 if (session_destroy()) {
      echo "Sesión destruida correctamente";
  } else {
