@@ -14,7 +14,7 @@
             <div class="container p-5 my-5 border">
                 <div class="row">
                     <div class="col-sm-12">
-                        Una app para sencilla para organizar tu vida
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, nesciunt quae? Tenetur tempora eius itaque et voluptate obcaecati minima illum. Animi voluptatum maiores ducimus obcaecati, quidem impedit sequi suscipit labore.
                     </div>
                 </div>
 
