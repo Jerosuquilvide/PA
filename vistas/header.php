@@ -25,18 +25,21 @@
     <div class="card-header">
         <div class="p-3 bg-primary text-white text-center">
             <h1 class="card-title ">ToDo List<span class="glyphicon glyphicon-ok"></span></h1>
-        </div>
+            <?php if( @$_SESSION['log'] == 'valido') : ?>
+                <?php $nombre = $_SESSION['name'] ; ?>
+                <div class="callout-info text-end"> <p class="fs-5"> Bienvenido @<?php echo $nombre ?> </p></div>
+                <?php else: ?>
 
+            <?php endif ; ?>
+        </div>
+   
         <nav class="nav">
-            <!-- Renderizado condicional para el Inicio-->            
-            <?php $donde_esta = strpos($_SERVER['REQUEST_URI'],'index.php') ;
-                if(is_int($donde_esta)):
-            ?>
-                <a class="nav-link" href="./index.php">Inicio</a>
-            <?php elseif(is_bool($donde_esta)) : ?> 
-                <a class="nav-link" href="../index.php">Inicio</a>
+            <!-- Renderizado condicional para el Inicio-->      
+            <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') : ?>      
+                <a class="nav-link" href="./inicio.php">Inicio</a>
+                <a class="nav-link" href="#">Notas</a>
             <?php endif ;?>
-            <a class="nav-link" href="#">Notas</a>
+            
             <!-- Renderizado condicional para el Iniciar Sesion y Registrarse-->        
             <?php if( (!isset($_SESSION['log']) || $_SESSION['log'] == 'invalido') 
                     && is_int(strpos($_SERVER['REQUEST_URI'],'login.php'))) : ?>
@@ -50,7 +53,7 @@
             <?php  endif ?>
             <!-- Renderizado condicional para Cerrar Sesion-->        
             <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') :?>
-                <a class="nav-link" href="./scripts/logout.php" >Cerrar Sesión</a>
+                <a class="nav-link" href="./logout.php" >Cerrar Sesión</a>
             <?php endif?>
         </nav>
     </div>
