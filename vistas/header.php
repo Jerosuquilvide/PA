@@ -15,8 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Link del css-->
     <link rel="stylesheet" type="text/css" href="../assets/styles.css">
-    <!-- Script del captcha-->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 
@@ -43,6 +42,7 @@
             <!-- Renderizado condicional para el Iniciar Sesion y Registrarse-->        
             <?php if( (!isset($_SESSION['log']) || $_SESSION['log'] == 'invalido') 
                     && is_int(strpos($_SERVER['REQUEST_URI'],'login.php'))) : ?>
+            <a class="nav-link" href="../index.php">Inicio</a>
             <a class="nav-link" href="./login.php">Iniciar Sesion</a>
             <a class="nav-link" href="#">Registrarse</a>
             <?php elseif(is_bool(strpos($_SERVER['REQUEST_URI'],'login.php')) && 

@@ -1,24 +1,43 @@
-<?php require '../vistas/header.php'; ?>
+<?php require '../vistas/header.php';
 
+?>
 
-<script src="https://www.google.com/recaptcha/api.js?render=6LfnqWYiAAAAAOxg6GoLlUFVUxpc7mXXgoLCHtik"></script>
+<?php
+
+if(isset($_SESSION['token'])){
+    unset($_SESSION['token']);
+}
+$token = "";
+
+$a = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+$length = 20;
+
+for ($i = 0; $i < $length; $i++) {
+    $token .= $a[rand(0, 61)];
+}
+
+$_SESSION['token'] = $token;
+
+?>
 
 <div class="container p-5 my-5 border">
     <div class="row">
         <div class="col-sm-12">
 
-            <form action="../scripts/procesoLogin.php" class="was-validated" method="post">
+            <form action="./procesoLogin.php" class="was-validated" method="POST">
+            <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <div class="mb-3 mt-3">
                     <label for="user" class="form-label">Usuario:</label>
                     <input type="text" class="form-control" id="user" placeholder="Tu usuario" name="user" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valido.</div>
+                    <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>
                 <div class="mb-3">
                     <label for="pwd" class="form-label">Contraseña:</label>
                     <input type="password" class="form-control" id="pwd" placeholder="Tu contraseña" name="pswd" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valido.</div>
+                    <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>
 
                 <?php if (isset($_SESSION['log']) == 'invalido') : ?>
@@ -32,16 +51,12 @@
     <div class="container text-center">
         <div class="row justify-content-evenly">
 
-            <div class="col-4">
 
-                <div class="g-recaptcha" data-sitekey="6LfewWYiAAAAAMdXCF4UL3Ssofzoxv4gi6FGMzKm"></div>
+            <div class="col-8">
+
+                <button type="submit" value="Submit" class="btn btn-primary  btn-lg">Entrar</button>
+                
             </div>
-        
-
-        <div class="col-8">
-
-            <button type="submit" value="submit" class="btn btn-primary  btn-lg">Entrar</button>
-        </div>
         </div>
     </div>
 
