@@ -4,8 +4,8 @@
 
 <?php
 
-if(isset($_SESSION['token'])){
-    unset($_SESSION['token']);
+if (!empty($_SESSION['rand_code'])) {
+    unset($_SESSION['rand_code']);
 }
 $token = "";
 
@@ -26,7 +26,7 @@ $_SESSION['token'] = $token;
         <div class="col-sm-12">
 
             <form action="./procesoLogin.php" class="was-validated" method="POST">
-            <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
+                <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <div class="mb-3 mt-3">
                     <label for="user" class="form-label">Usuario:</label>
                     <input type="text" class="form-control" id="user" placeholder="Tu usuario" name="user" required>
@@ -51,12 +51,21 @@ $_SESSION['token'] = $token;
     <div class="container text-center">
         <div class="row justify-content-evenly">
 
+            <div class="col-4">
+                <label for="captcha">
+                    <img src="./random.php">
+                    <input type="text" name="rand_code" value="" required>
+                </label>
+            </div>
+
 
             <div class="col-8">
 
                 <button type="submit" value="Submit" class="btn btn-primary  btn-lg">Entrar</button>
-                
+
             </div>
+
+
         </div>
     </div>
 
