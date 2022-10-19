@@ -4,8 +4,15 @@
     $usuario = "fcytuader";
     $pass = "programacionavanzada";
 
-    if(!empty($_POST['rand_code']) && $_POST['rand_code'] == $_SESSION['rand_code']){
+    $ip = $_SERVER["REMOTE_ADDR"];
+    $captcha = $_POST['g-recaptcha-response'];
+    $secretKey = '6LcZ_pMiAAAAAPMFAQR5QsLilSLHCgruhND0AHls';
 
+    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$captcha}&remoteip={$ip}");
+
+    $atributos = json_decode($response, TRUE);
+
+    if($atributos['success']){
         if($_POST['user'] === $usuario && $_POST['pswd'] === $pass){
             $_SESSION['log'] = 'valido';
             $_SESSION['name'] = $usuario;

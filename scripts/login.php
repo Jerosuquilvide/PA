@@ -40,6 +40,10 @@ $_SESSION['token'] = $token;
                     <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>
 
+                <div class="mb-3">
+                    <div class="g-recaptcha" data-sitekey="6LcZ_pMiAAAAAF1NtLdWn9dGwmtK4jOZfuk_VlEx"></div>    
+                </div>
+
                 <?php if (isset($_SESSION['log']) == 'invalido') : ?>
 
                     <div class="alert alert-danger"><strong>Complete correctamente el formulario</strong></div>
@@ -50,22 +54,10 @@ $_SESSION['token'] = $token;
     </div>
     <div class="container text-center">
         <div class="row justify-content-evenly">
-
-            <div class="col-4">
-                <label for="captcha">
-                    <img src="./random.php">
-                    <input type="text" name="rand_code" value="" required>
-                </label>
-            </div>
-
-
             <div class="col-8">
-
                 <button type="submit" value="Submit" class="btn btn-primary  btn-lg">Entrar</button>
 
             </div>
-
-
         </div>
     </div>
 
