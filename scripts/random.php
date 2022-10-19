@@ -19,7 +19,7 @@ session_start();
 }
 header ('Content-Type: image/png');
 $im = imagecreatetruecolor(120, 30);
-$color_texto = imagecolorallocate($im, 233, 14, 91);
+$color_texto = imagecolorallocate($im, 204, 255, 255);
 imagestring($im, 10, 5, 5,$str, $color_texto);
 imagepng($im);
 imagedestroy($im);
