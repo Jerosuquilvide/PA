@@ -24,12 +24,20 @@ $_SESSION['token'] = $token;
 <div class="container p-5 my-5 border">
     <div class="row">
         <div class="col-sm-12">
-
+             <!-- Comprobacion de la concexion de bd-->
+             <?php       
+            $conn = mysqli_connect('localhost', 'root', '', 'TP');
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }else{
+                echo "Base de datos corriendo correctamente";
+            }
+            ;?>
             <form action="./procesoLogin.php" class="was-validated" method="POST">
                 <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <div class="mb-3 mt-3">
-                    <label for="user" class="form-label">Usuario:</label>
-                    <input type="text" class="form-control" id="user" placeholder="Tu usuario" name="user" required>
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control" id="email" placeholder="Tu email" name="email" required>
                     <div class="valid-feedback">Valido.</div>
                     <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>

@@ -1,20 +1,30 @@
 <?php
     session_start();
     
-    $usuario = "fcytuader";
-    $pass = "programacionavanzada";
 
-    if(!empty($_POST['rand_code']) && $_POST['rand_code'] == $_SESSION['rand_code']){
+    //Validacion contra la base de datos
+    if(!empty($_POST['rand_code']) && $_POST['rand_code'] == $_SESSION['rand_code'] && $_POST['email'] && $_POST['pswd']){
 
-        if($_POST['user'] === $usuario && $_POST['pswd'] === $pass){
-            $_SESSION['log'] = 'valido';
-            $_SESSION['name'] = $usuario;
-            header("Location:"."./inicio.php");
-        }
+            $mysqli = new mysqli("localhost", "root", "", "TP"); 
+            $email = $_POST['email'];
+            $password = $_POST['pswd'];
+            $consulta_previa = $mysqli->query("SELECT NOMBRE,EMAIL,PASS FROM USUARIO WHERE EMAIL = '$email' ; ");
+            $fila = mysqli_fetch_assoc($consulta_previa);
+            $passwordHash = $fila['PASS'];
+            $verificar = password_verify($password,$passwordHash);
+            if($verificar){                
+                $_SESSION['log'] = 'valido';
+                $_SESSION['name'] = $fila['NOMBRE'];
+                header("Location:"."./inicio.php");
+            }else{
+                $_SESSION['log'] = 'invalido';
+                header("Location:"."./login.php");        
+            }
+            
+            $mysqli->close();
+            
         
-    }else{
-        $_SESSION['log'] = 'invalido';
-        header("Location:"."./login.php");
+        
     }
     
 
