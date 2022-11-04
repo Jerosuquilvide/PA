@@ -33,11 +33,11 @@
             <?php endif ; ?>
         </div>
    
-        <nav class="nav">
+        <nav class="nav bg-dark text-decoration-none">
             <!-- Renderizado condicional para el Inicio-->      
             <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') : ?>      
-                <a class="nav-link" href="./inicio.php">Inicio</a>
-                <a class="nav-link" href="#">Notas</a>
+                <a class="nav-link " href="./inicio.php">Inicio</a>
+                <a class="nav-link" href="./vistaNota.php">Notas</a>
             
             <!-- Renderizado condicional para el Inicio sin autenticar-->  
             <?php elseif( (!isset($_SESSION['log']) || $_SESSION['log'] == 'invalido') 

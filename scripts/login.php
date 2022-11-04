@@ -1,6 +1,4 @@
-<?php require '../vistas/header.php';
-
-?>
+<?php require '../vistas/header.php';?>
 
 <?php
 
@@ -30,20 +28,25 @@ $_SESSION['token'] = $token;
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }else{
-                echo "Base de datos corriendo correctamente";
+                echo "<script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Base de datos corriendo correctamente', 'success');
+                         }
+                           
+                </script>";
             }
             ;?>
             <form action="./procesoLogin.php" class="was-validated" method="POST">
                 <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <div class="mb-3 mt-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="text" class="form-control" id="email" placeholder="Tu email" name="email" required>
+                    <input type="email" class="form-control" id="email" placeholder="Tu email" name="email" required>
                     <div class="valid-feedback">Valido.</div>
                     <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>
                 <div class="mb-3">
                     <label for="pwd" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Tu contraseña" name="pswd" required>
+                    <input type="password" class="form-control" id="pwd" placeholder="Tu contraseña" name="pswd" required pattern="[A-Za-z0-9_-]{8,20}">
                     <div class="valid-feedback">Valido.</div>
                     <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>
@@ -85,5 +88,10 @@ $_SESSION['token'] = $token;
 </div>
 
 </div>
+
+    <!-- Incluir JS -->
+    <script src="../lib/jquery-3.5.1.min.js" ></script>
+    <script src="../lib/notify.min.js" ></script>
+    <script src="../lib/bootstrap.min.js" ></script>
 
 <?php require '../vistas/footer.php' ?>

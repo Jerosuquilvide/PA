@@ -4,13 +4,18 @@
     <div class="row">
         <div class="col-sm-12">
 
-            <!-- Comprobacion de la concexion de bd-->
-            <?php       
+             <!-- Comprobacion de la concexion de bd-->
+             <?php       
             $conn = mysqli_connect('localhost', 'root', '', 'TP');
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }else{
-                echo "Base de datos corriendo correctamente";
+                echo "<script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Base de datos corriendo correctamente', 'success');
+                         }
+                           
+                </script>";
             }
             ;?>
             
@@ -39,7 +44,7 @@
                     <div class="valid-feedback">Valido.</div>
                     <div class="invalid-feedback">Por favor rellena este campo correctamente.</div>
                 </div>
-
+                <!-- Esto si no se implementa hay que fletarlo-->
                 <?php if (isset($_SESSION['errores'])) : ?>
                     <?php $errores = $_SESSION['errores'] ;?>
                     <?php foreach($e as $errores): ?>
@@ -64,5 +69,9 @@
 
 </div>
 
+<!-- Incluir JS -->
+    <script src="../lib/jquery-3.5.1.min.js" ></script>
+    <script src="../lib/notify.min.js" ></script>
+    <script src="../lib/bootstrap.min.js" ></script>
 
 <?php require '../vistas/footer.php' ?>
