@@ -4,7 +4,9 @@
         
             $mysqli = new mysqli("localhost", "root", "", "TP"); 
             $id_delete = $_GET['id'];
+            
             $eliminar_sql = "DELETE  FROM NOTA WHERE ID = $id_delete ; ";
+            $eliminar_sql = $mysqli->real_escape_string($eliminar_sql);
             $resultado_delete = $mysqli->query($eliminar_sql);
 
             if($resultado_delete){

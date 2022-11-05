@@ -32,7 +32,10 @@
             $estado = $_POST['estado'];
             $tit = $_POST['titulo'];
             $id = $_POST['id'];
-
+            $cont = $mysqli->real_escape_string($cont);
+            $estado = $mysqli->real_escape_string($estado);
+            $tit = $mysqli->real_escape_string($tit);
+            
             settype($cont , "string");
             settype($estado, "int");
             settype($tit , "string");
