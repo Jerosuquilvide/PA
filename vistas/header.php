@@ -11,6 +11,26 @@
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- jQuery 3.6.1 -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lf5BeEiAAAAAMg9OYHNrWDDjGc_hOUil4z9WSqH"></script>
+    <script>
+			$(document).ready(function() {
+				$('#entrar').click(function() {
+					grecaptcha.ready(function() {
+						grecaptcha.execute('6Lf5BeEiAAAAAMg9OYHNrWDDjGc_hOUil4z9WSqH', {
+							action: 'validarUsuario'
+							}).then(function(token) {
+                            $('#recaptcha-token').val(token);
+							$('#form-login').submit();
+						});
+					});
+				});
+			});
+	</script>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Link del css-->
