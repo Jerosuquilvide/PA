@@ -18,29 +18,41 @@
         && $_POST['pswd']){
     
         //$mysqli = new mysqli("localhost", "root", "", "TP");
-        print_r($_ENV);
         $engine = $_ENV['DB_ENGINE'];
         $host = $_ENV['DB_HOST'];
         $name = $_ENV['DB_NAME'];
         $user = $_ENV['DB_USER'];
         $pwd =  $_ENV['DB_PWD'];
-        $mbd = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
+        $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
         $email = $_POST['email'];
         $password = $_POST['pswd'];
 
-        $sql = "
-            SELECT 
-                ID,NOMBRE,EMAIL,PASS 
-            FROM 
-                USUARIO 
-            WHERE 
-                EMAIL = '$email';
-        ";
+        // $sql = "
+        //     SELECT 
+        //         ID,NOMBRE,EMAIL,PASS 
+        //     FROM 
+        //         USUARIO 
+        //     WHERE 
+        //         EMAIL = '$email';
+        // ";
 
         //$consulta_previa = $mysqli->query("SELECT ID,NOMBRE,EMAIL,PASS FROM USUARIO WHERE EMAIL = '$email' ; ");
-        $consulta = $mbd->query($sql);
+
+        // $consulta = $pdo->query($sql);
+        // $fila = $consulta->fetch();
+
+        $consulta = $pdo->prepare("
+            SELECT
+                ID,NOMBRE,EMAIL,PASS 
+            FROM
+                USUARIO
+            WHERE
+                EMAIL = :email;
+        ");
+        $consulta->bindValue(':email', $email, PDO::PARAM_STR);
+        $consulta->execute();
         $fila = $consulta->fetch();
-        print_r($consulta);
+
         $passwordHash = $fila['PASS'];
         $verificar = password_verify($password,$passwordHash);
         if($verificar){                
@@ -55,7 +67,7 @@
         
         //$mysqli->close();
         $consulta = null;
-        $mbd = null;
+        $pdo = null;
 
     }else{
         $_SESSION['log'] = 'invalido';

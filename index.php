@@ -2,8 +2,8 @@
 require './vistas/header.php';
 require('./vendor/autoload.php');
 
-$dotenv = Dotenv\Dotenv::createImmutable("./");
-$dotenv->load();
+// $dotenv = Dotenv\Dotenv::createImmutable("./");
+// $dotenv->load();
 // print_r($_ENV);
 ?>
         
