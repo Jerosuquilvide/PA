@@ -6,6 +6,13 @@
 
     session_start();
     
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $captcha = $_POST['g-recaptcha-response'];
+    $secretkey = $_ENV['CAPTCHA_SECRET'];
+
+    $respuesta = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$captcha&remoteip=$ip");
+
+    $atributos = json_decode($respuesta, TRUE);
 
     //Validacion contra la base de datos
 /*     if(!empty($_POST['rand_code'])
@@ -13,9 +20,11 @@
         && $_POST['email'] 
         && $_POST['pswd']){ */
 
-    if(!empty($_POST['rand_code'])
-        && $_POST['email'] 
-        && $_POST['pswd']){
+    if($_atributos['success'] && $_POST['email'] && $_POST['pswd']){
+
+    // if(!empty($_POST['rand_code'])
+    //     && $_POST['email'] 
+    //     && $_POST['pswd']){
     
         //$mysqli = new mysqli("localhost", "root", "", "TP");
         $engine = $_ENV['DB_ENGINE'];
