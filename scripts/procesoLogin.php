@@ -20,11 +20,9 @@
         && $_POST['email'] 
         && $_POST['pswd']){ */
 
-    if($_atributos['success'] && $_POST['email'] && $_POST['pswd']){
+    // if($_atributos['success'] && $_POST['email'] && $_POST['pswd']){
 
-    // if(!empty($_POST['rand_code'])
-    //     && $_POST['email'] 
-    //     && $_POST['pswd']){
+    if($_POST['email'] && $_POST['pswd']){
     
         //$mysqli = new mysqli("localhost", "root", "", "TP");
         $engine = $_ENV['DB_ENGINE'];
