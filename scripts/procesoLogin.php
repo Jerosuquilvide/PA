@@ -5,26 +5,22 @@
     $dotenv->load();
 
     session_start();
-    
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $captcha = $_POST['g-recaptcha-response'];
-    $secretkey = $_ENV['CAPTCHA_SECRET'];
-
-    $respuesta = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$captcha&remoteip=$ip");
-
-    $atributos = json_decode($respuesta, TRUE);
+	$clave = $_ENV['CAPTCHA_SECRET'];
+    $token = $_POST['recaptcha-token'];
+	$cu = curl_init();
+    curl_setopt($cu, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($cu, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($cu, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+	curl_setopt($cu, CURLOPT_POST, 1);
+	curl_setopt($cu, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $clave, 'response' => $token)));
+	curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($cu);
+	curl_close($cu);
+	
+	$datos = json_decode($response, true);
 
     //Validacion contra la base de datos
-/*     if(!empty($_POST['rand_code'])
-        && $_POST['rand_code'] == $_SESSION['rand_code'] 
-        && $_POST['email'] 
-        && $_POST['pswd']){ */
-
-    // if($_atributos['success'] && $_POST['email'] && $_POST['pswd']){
-
-    if($_POST['email'] && $_POST['pswd']){
-    
-        //$mysqli = new mysqli("localhost", "root", "", "TP");
+    if($datos['success'] == 1 && $datos['score'] >= 0.5 && $_POST['email'] && $_POST['pswd']){    
         $engine = $_ENV['DB_ENGINE'];
         $host = $_ENV['DB_HOST'];
         $name = $_ENV['DB_NAME'];
@@ -33,20 +29,6 @@
         $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
         $email = $_POST['email'];
         $password = $_POST['pswd'];
-
-        // $sql = "
-        //     SELECT 
-        //         ID,NOMBRE,EMAIL,PASS 
-        //     FROM 
-        //         USUARIO 
-        //     WHERE 
-        //         EMAIL = '$email';
-        // ";
-
-        //$consulta_previa = $mysqli->query("SELECT ID,NOMBRE,EMAIL,PASS FROM USUARIO WHERE EMAIL = '$email' ; ");
-
-        // $consulta = $pdo->query($sql);
-        // $fila = $consulta->fetch();
 
         $consulta = $pdo->prepare("
             SELECT
@@ -72,7 +54,6 @@
             header("Location:"."./login.php");        
         }
         
-        //$mysqli->close();
         $consulta = null;
         $pdo = null;
 
