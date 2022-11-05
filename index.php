@@ -1,6 +1,12 @@
-<?php require './vistas/header.php';?>
-        
+<?php 
+require './vistas/header.php';
+require('./vendor/autoload.php');
 
+$dotenv = Dotenv\Dotenv::createImmutable("./");
+$dotenv->load();
+// print_r($_ENV);
+?>
+        
             <div class="container p-5 my-5 border">
                 <div class="row">
                     <div class="col-sm-12">
