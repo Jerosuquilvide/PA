@@ -22,7 +22,7 @@
 <body>
     <!-- Cabecera -->
     <div class="card-header">
-        <div class="p-3 bg-primary text-white text-center">
+        <div class="p-3  text-white text-center" style="background:#304CE1 ;">
             <h1 class="card-title ">ToDo List<span class="glyphicon glyphicon-ok"></span></h1>
             
             <?php if( @$_SESSION['log'] == 'valido') : ?>
@@ -33,7 +33,7 @@
             <?php endif ; ?>
         </div>
    
-        <nav class="nav bg-dark text-decoration-none">
+        <nav class="nav text-white text-decoration-none" style="background: #142061;">
             <!-- Renderizado condicional para el Inicio-->      
             <?php if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido') : ?>      
                 <a class="nav-link " href="./inicio.php">Inicio</a>

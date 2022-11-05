@@ -23,8 +23,8 @@ function tabla(){
                         }else{
                             $filas.='<td>'.$est1.'</td>';
                         }
-                        $filas.='<td><a href="./editarNota.php?id='.$nota['ID'].'" class="btn btn-outline-warning btn-sm" data-bs-target="editarNota">Editar</a></td>';
-                        $filas.='<td><a class="btn btn-outline-danger btn-sm" data-bs-target="eliminarNota">Borrar</a></td>';
+                        $filas.='<td><a href="./editarNota.php?id='.$nota['ID'].'" class="btn btn-outline-warning btn-sm">Editar</a></td>';
+                        $filas.='<td><a href="./eliminarNota.php?id='.$nota['ID'].'" class="btn btn-outline-danger btn-sm">Borrar</a></td>';
                     $filas.='</tr>';
                 }
             }else{
@@ -46,7 +46,9 @@ function tabla(){
                     </table>
                     </div>
                     ';
+            $mysqli->close();
             return $tabla;
             }
+            
 ?>
 

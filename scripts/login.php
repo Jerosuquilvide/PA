@@ -85,9 +85,7 @@ $_SESSION['token'] = $token;
     </form>
 
 </div>
-</div>
 
-</div>
 
     <!-- Incluir JS -->
     <script src="../lib/jquery-3.5.1.min.js" ></script>

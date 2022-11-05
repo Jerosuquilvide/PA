@@ -1,7 +1,64 @@
 <?php require '../vistas/header.php'; ?>
 
 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == 'valido') : ?>
-    
+      <!-- Alertas para la creacion de una nota -->
+      <?php if(isset($_SESSION['alta_nota']) && $_SESSION['alta_nota'] == 'ok') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Nota agregada correctamente', 'success');
+                         }
+                  </script>
+                  <?php unset($_SESSION['alta_nota'])?>
+        <?php endif ; ?>
+
+
+        <?php if(isset($_SESSION['alta_nota']) && $_SESSION['alta_nota'] == 'fallo') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Error al insertar la nota', 'error');
+                         }
+                  </script>
+                  <?php unset($_SESSION['alta_nota']) ?>
+        <?php endif ; ?>
+
+        <!-- Alertas para la modificacion de una nota -->
+        <?php if(isset($_SESSION['modif']) && $_SESSION['modif'] == 'ok') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Nota modificada correctamente', 'success');
+                         }
+                  </script>
+                  <?php unset($_SESSION['modif']) ?>
+        <?php endif ; ?>
+
+        <?php if(isset($_SESSION['modif']) && $_SESSION['modif'] == 'fallo') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Error al modificar la nota', 'error');
+                         }
+                  </script>
+                  <?php unset($_SESSION['modif']) ?>
+        <?php endif ; ?>
+
+        <!-- Alertas para la eliminacion de una nota -->
+
+        <?php if(isset($_SESSION['delete']) && $_SESSION['delete'] == 'ok') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Nota eliminada correctamente', 'success');
+                         }
+                  </script>
+                  <?php unset($_SESSION['delete']) ?>
+        <?php endif ; ?>
+
+        <?php if(isset($_SESSION['delete']) && $_SESSION['delete'] == 'fallo') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Error al eliminar la nota', 'error');
+                         }
+                  </script>
+                  <?php unset($_SESSION['delete']) ?>
+        <?php endif ; ?>
 
 
  <!-- Modal para crear una nota-->   
@@ -16,11 +73,11 @@
         <form action="./procesoNota.php" method="POST">
           <div class="mb-3">
             <label for="titulo" class="col-form-label">Titulo:</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required pattern="[A-Za-z0-9_-]{1,25}">
+            <input type="text" class="form-control" id="titulo" name="titulo" required pattern="[A-Za-z0-9_- ]{1,25}">
           </div>
           <div class="mb-3">
             <label for="contenido" class="col-form-label">Contenido:</label>
-            <textarea class="form-control" id="contenido" name="contenido" required pattern="[A-Za-z0-9_-]{1,225}" ></textarea>
+            <textarea class="form-control" id="contenido" name="contenido" required pattern="[A-Za-z0-9_- ]{1,225}" ></textarea>
           </div>
 
             <div class="modal-footer">
@@ -39,7 +96,7 @@
 
 <!--Se carga el listado. -->
 <div id="contenedor"> 
-        <div class="p-3 bg-success text-white text-center bg-opacity-75">
+        <div class="p-3  text-white text-center bg-opacity-75" style="background:#7586E6;">
             <h3 class="card-title ">Lista de notas<span class="glyphicon glyphicon-ok"></span></h3>
         </div>
          <?php include "./Notas.php"; echo tabla() ?>;         
@@ -53,8 +110,8 @@
 
 
         <!-- Button trigger modal -->
-        <div class="d-grid gap-2" style="position: fixed; bottom: 60px; width: 100%; height: 50px; padding-top:10px" >
-            <button type="button" class="btn bg-success p-2 text-white bg-opacity-75" data-bs-toggle="modal" data-bs-target="#crearNota">
+        <div class="d-grid gap-2" style="position: fixed; bottom: 25px; width: 100%; height: 50px; padding-top:10px ;background:#7586E6; opacity: 0.75;" >
+            <button type="button" class="btn  p-2 text-white " style="background:#7586E6;bottom: 15px" data-bs-toggle="modal" data-bs-target="#crearNota">
                 Agregar una nueva nota
             </button>
         </div>
