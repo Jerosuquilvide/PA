@@ -88,11 +88,12 @@
                 $consulta->execute();
 
                 // if($resultado){
-                //     echo "se inserto correctamente !"; //notificar
-                //     header("Location:"."../index.php");
-                // }else{ 
-                //     echo "NO se inserto correctamente !"; //notificar
-                // }
+                if($consulta){
+                    echo "se inserto correctamente !"; //notificar
+                    header("Location:"."../index.php");
+                }else{ 
+                    echo "NO se inserto correctamente !"; //notificar
+                }
                 
             }else{
                 echo "ya existe una cuenta con ese email"; //notificar
@@ -100,5 +101,7 @@
             }
             
             //$mysqli->close();
+            $pdo = null;
+            $consulta = null;
         }
     }
