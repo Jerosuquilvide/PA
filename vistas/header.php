@@ -61,7 +61,9 @@
                 <a class="nav-link" href="./vistaNota.php">Notas</a>
             <?php endif ;?>
             <!-- Renderizado condicional para el Inicio sin autenticar-->  
-            <?php if(is_bool(strpos($_SERVER['REQUEST_URI'],'login.php')) && is_bool(strpos($_SERVER['REQUEST_URI'],'AltaUsuario.php'))): ?>
+            <?php if(is_bool(strpos($_SERVER['REQUEST_URI'],'login.php')) && is_bool(strpos($_SERVER['REQUEST_URI'],'AltaUsuario.php')) 
+                && (!isset($_SESSION['log']) || $_SESSION['log'] != 'valido')
+            ): ?>
                     
             <a class="nav-link" href="./scripts/login.php">Iniciar Sesion</a>
             <a class="nav-link" href="./scripts/AltaUsuario.php">Registrarse</a>
