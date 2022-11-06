@@ -5,60 +5,39 @@
     $dotenv->load();
 
     session_start();
+    $clave = $_ENV['CAPTCHA_SECRET'];
+    $token = $_POST['recaptcha-token'];
+	$cu = curl_init();
+    curl_setopt($cu, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($cu, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($cu, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+	curl_setopt($cu, CURLOPT_POST, 1);
+	curl_setopt($cu, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $clave, 'response' => $token)));
+	curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($cu);
+	curl_close($cu);
+	
+	$datos = json_decode($response, true);
 
     if(isset($_POST)){
         $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
         $email =  isset($_POST['email']) ? $_POST['email'] : false;
         $password =  isset($_POST['pswd']) ? $_POST['pswd'] : false;
-        if($nombre && $email && $password){
+        
+        if($nombre && $email && $password && $datos['success'] == 1 && $datos['score'] >= 0.5 ){
             $engine = $_ENV['DB_ENGINE'];
             $host = $_ENV['DB_HOST'];
             $name = $_ENV['DB_NAME'];
             $user = $_ENV['DB_USER'];
             $pwd =  $_ENV['DB_PWD'];
             $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
-
-            // $mysqli = new mysqli("localhost", "root", "", "TP");
-
-            //Creo las variables validadas para meter a la bd
-            // $nbd = $mysqli->real_escape_string($nombre);
-            // $ebd = $mysqli->real_escape_string($email);
-            // $ps = $mysqli->real_escape_string($password);
-            // $pwd = password_hash($ps, PASSWORD_BCRYPT, ['cost' => 12]);
-
             
             $pwd = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
             $user = array(
-                // 'nombre' => $nbd,
-                // 'email' => $ebd,
-                // 'pass' => $pwd
                 'nombre' => $nombre,
                 'email' => $email,
                 'pass' => $pwd
             );
-
-            //Esto hay q ver como implementarlo
-            // $consulta = $mysqli->prepare("INSERT INTO USUARIO (NOMBRE,EMAIL,PASS) VALUES(?,?,?);");
-            
-            // $consulta->bind_param('sss' , $nbd, $ebd, $pwd);
-            //------
-
-            //Esto anda
-
-            // $sql = "
-            //     SELECT
-            //         COUNT(ID) AS CANTIDAD
-            //     FROM
-            //         USUARIO
-            //     WHERE
-            //         EMAIL = '$ebd';
-            // ";
-
-            // $consulta_previa = $mysqli->query("SELECT COUNT(ID) AS CANTIDAD FROM USUARIO WHERE EMAIL = '$ebd' ; ");
-            // $fila = $consulta_previa->fetch_array(MYSQLI_ASSOC);    
-            
-            // $consulta = $pdo->query($sql);
-            // $fila = $consulta->fetch();
 
             $consulta = $pdo->prepare("
                 SELECT
@@ -74,9 +53,7 @@
 
             $cast = (int)$fila['CANTIDAD'];
 
-            if($cast == 0){
-                // $resultado = $mysqli->query("INSERT INTO USUARIO (NOMBRE,EMAIL,PASS) VALUES('$nbd', '$ebd', '$pwd');");
-                
+            if($cast == 0){                
                 $consulta = $pdo->prepare("
                     INSERT INTO 
                         USUARIO (NOMBRE,EMAIL,PASS)
@@ -87,7 +64,6 @@
                 $consulta->bindValue(':pwd', $pwd, PDO::PARAM_STR);
                 $consulta->execute();
 
-                // if($resultado){
                 if($consulta){
                     echo "se inserto correctamente !"; //notificar
                     header("Location:"."../index.php");
@@ -100,7 +76,6 @@
                 header("Location:"."./AltaUsuario.php");
             }
             
-            //$mysqli->close();
             $pdo = null;
             $consulta = null;
         }

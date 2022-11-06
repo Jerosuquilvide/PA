@@ -20,9 +20,9 @@
                 </div>
 
                 <?php if (isset($_SESSION['log']) == 'invalido') : ?>
-
-                    <div class="alert alert-danger"><strong>Complete correctamente el formulario</strong></div>
-
+                    <div class="alert alert-danger">
+                        <strong>Complete correctamente el formulario</strong>
+                    </div>
                 <?php endif; ?>
 
                 </div>
@@ -37,29 +37,13 @@
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
-<<<<<<< HEAD
-
-
-
-    </form>
-
-</div>
-
-
-    <!-- Incluir JS -->
-    <script src="../lib/jquery-3.5.1.min.js" ></script>
-    <script src="../lib/notify.min.js" ></script>
-    <script src="../lib/bootstrap.min.js" ></script>
-=======
 </div>
 
 <!-- Incluir JS -->
 <script src="../lib/jquery-3.5.1.min.js" ></script>
 <script src="../lib/notify.min.js" ></script>
 <script src="../lib/bootstrap.min.js" ></script>
->>>>>>> remotes/origin/main
 
 <?php require '../vistas/footer.php' ?>
