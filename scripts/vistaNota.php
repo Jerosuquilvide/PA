@@ -1,5 +1,8 @@
 <?php require '../vistas/header.php'; ?>
-
+<?php if(!isset($_SESSION['log']) || $_SESSION['log'] == 'invalido'){
+  header("Location:"."./login.php");
+}
+?>
 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == 'valido') : ?>
       <!-- Alertas para la creacion de una nota -->
       <?php if(isset($_SESSION['alta_nota']) && $_SESSION['alta_nota'] == 'ok') : ?>

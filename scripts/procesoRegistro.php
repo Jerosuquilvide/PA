@@ -20,13 +20,6 @@
                     'pass' => $pbd
                 );
 
-                //Esto hay q ver como implementarlo
-                // $consulta = $mysqli->prepare("INSERT INTO USUARIO (NOMBRE,EMAIL,PASS) VALUES(?,?,?);");
-             
-                // $consulta->bind_param('sss' , $nbd, $ebd, $pbd);
-                //------
-
-                //Esto anda
 
 
                 $consulta_previa = $mysqli->query("SELECT COUNT(ID) AS CANTIDAD FROM USUARIO WHERE EMAIL = '$ebd' ; ");
@@ -38,17 +31,20 @@
                     $resultado = $mysqli->query("INSERT INTO USUARIO (NOMBRE,EMAIL,PASS) VALUES('$nbd', '$ebd', '$pbd');");
                     
                     if($resultado){
-                        echo "se inserto correctamente !"; //notificar
-                        header("Location:"."../index.php");
+                        $_SESSION['alta_user'] = 'ok';
+                        header("Location:"."./login.php");
                     }else{ 
-                        echo "NO se inserto correctamente !"; //notificar
+                        $_SESSION['alta_user'] = 'fallo';
+                        header("Location:"."./login.php");
                     }
                     
                 }else{
-                    echo "ya existe una cuenta con ese email"; //notificar
+                    $_SESSION['alta_user'] = 'duplicado';
                     header("Location:"."./AltaUsuario.php");
                 }
 
                 $mysqli->close();
            }
+    }else{
+            header("Location:"."./login.php");      
     }

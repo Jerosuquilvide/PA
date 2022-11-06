@@ -19,6 +19,15 @@
             }
             ;?>
             
+            <?php if(isset($_SESSION['alta_user']) && $_SESSION['alta_user'] == 'duplicado') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Ya existe una cuenta con ese email', 'info');
+                         }
+                  </script>
+                  <?php unset($_SESSION['alta_user'])?>
+            <?php endif ; ?>
+
             <form action="./procesoRegistro.php" class="was-validated" method="POST">
                 <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <div class="mb-3 mt-3">

@@ -36,6 +36,26 @@ $_SESSION['token'] = $token;
                 </script>";
             }
             ;?>
+
+        <?php if(isset($_SESSION['alta_user']) && $_SESSION['alta_user'] == 'ok') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('Se registro correctamente', 'success');
+                         }
+                  </script>
+                  <?php unset($_SESSION['alta_user'])?>
+            <?php endif ; ?>
+        
+            <?php if(isset($_SESSION['alta_user']) && $_SESSION['alta_user'] == 'fallo') : ?>
+                  <script type='text/javascript'>
+                         window.onload = function(){
+                            $.notify('No registro correctamente', 'error');
+                         }
+                  </script>
+                  <?php unset($_SESSION['alta_user'])?>
+            <?php endif ; ?>
+
+     
             <form action="./procesoLogin.php" class="was-validated" method="POST">
                 <input type="hidden" id="token" name="token" value="<?php echo $_SESSION['token']; ?>">
                 <div class="mb-3 mt-3">
