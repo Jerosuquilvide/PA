@@ -27,10 +27,11 @@
         if($nombre && $email && $password && $datos['success'] == 1 && $datos['score'] >= 0.5 ){
             $engine = $_ENV['DB_ENGINE'];
             $host = $_ENV['DB_HOST'];
+            $port = $_ENV['DB_PORT'];
             $name = $_ENV['DB_NAME'];
             $user = $_ENV['DB_USER'];
             $pwd =  $_ENV['DB_PWD'];
-            $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
+            $pdo = new PDO("$engine:host=$host;port=$port;dbname=$name", $user, $pwd);
             
             $pwd = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
             $user = array(

@@ -8,10 +8,11 @@
     if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido'){
         $engine = $_ENV['DB_ENGINE'];
         $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
         $name = $_ENV['DB_NAME'];
         $user = $_ENV['DB_USER'];
         $pwd =  $_ENV['DB_PWD'];
-        $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
+        $pdo = new PDO("$engine:host=$host;port=$port;dbname=$name", $user, $pwd);
 
         if(isset($_POST['titulo']) && isset($_POST['contenido']) && !isset($_POST['estado']) && !isset($_POST['id'])){
             //agregar nota

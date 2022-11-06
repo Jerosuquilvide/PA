@@ -26,10 +26,11 @@
     if($datos['success'] == 1 && $datos['score'] >= 0.5 && $_POST['email'] && $_POST['pswd']){    
         $engine = $_ENV['DB_ENGINE'];
         $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
         $name = $_ENV['DB_NAME'];
         $user = $_ENV['DB_USER'];
         $pwd =  $_ENV['DB_PWD'];
-        $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
+        $pdo = new PDO("$engine:host=$host;port=$port;dbname=$name", $user, $pwd);
         $email = $_POST['email'];
         $password = $_POST['pswd'];
 
