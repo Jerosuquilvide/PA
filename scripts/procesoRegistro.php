@@ -1,7 +1,7 @@
 <?php 
     session_start();
 
-    if(isset($_POST)){
+    if(isset($_POST) && isset($_POST['nombre']) && isset($_POST['email']) && isset($_POST['pswd'])){
            $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
            $email =  isset($_POST['email']) ? $_POST['email'] : false;
            $password =  isset($_POST['pswd']) ? $_POST['pswd'] : false;
