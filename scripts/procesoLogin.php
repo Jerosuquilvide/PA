@@ -1,4 +1,5 @@
 <?php
+    require '../vistas/header.php';
     require('../vendor/autoload.php');
 
     $dotenv = Dotenv\Dotenv::createImmutable("../");
@@ -18,6 +19,8 @@
 	curl_close($cu);
 	
 	$datos = json_decode($response, true);
+
+    $_SESSION['log'] = 'invalido';
 
     //Validacion contra la base de datos
     if($datos['success'] == 1 && $datos['score'] >= 0.5 && $_POST['email'] && $_POST['pswd']){    
@@ -44,23 +47,17 @@
 
         $passwordHash = $fila['PASS'];
         $verificar = password_verify($password,$passwordHash);
+
         if($verificar){                
             $_SESSION['log'] = 'valido';
             $_SESSION['name'] = $fila['NOMBRE'];
             $_SESSION['id'] = $fila['ID'];
             header("Location:"."./inicio.php");
         }else{
-            $_SESSION['log'] = 'invalido';
             header("Location:"."./login.php");        
         }
         
         $consulta = null;
         $pdo = null;
-
-    }else{
-        $_SESSION['log'] = 'invalido';
-        header("Location:"."./login.php");   
     }
-    
-
 ?>

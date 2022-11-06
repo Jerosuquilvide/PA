@@ -1,14 +1,34 @@
-<?php require '../vistas/header.php'; ?>
+<?php
+
+require '../vistas/header.php';
+require('../vendor/autoload.php');
+
+$dotenv = Dotenv\Dotenv::createImmutable("../");
+$dotenv->load();
+
+?>
 
 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == 'valido' && isset($_GET)) : ?>
     <?php
-    $id = $_GET['id'];
-    $mysqli = new mysqli("localhost", "root", "", "TP");
-    $sql = "SELECT TITULO,CONTENIDO,ESTADO FROM NOTA WHERE ID = $id";
-    $consulta = $mysqli->query($sql);
-    $nota = $consulta->fetch_array(MYSQLI_ASSOC);
-    
-    $mysqli->close();
+        $engine = $_ENV['DB_ENGINE'];
+        $host = $_ENV['DB_HOST'];
+        $name = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $pwd =  $_ENV['DB_PWD'];
+        $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
+
+        $id = $_GET['id'];
+        $consulta = $pdo->prepare("
+            SELECT
+                TITULO, CONTENIDO, ESTADO
+            FROM 
+                NOTA 
+            WHERE ID = :id;
+        ");
+
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+        $nota = $consulta->fetch();
     ?>
         <div class="container p-5 my-5 border">
     <div class="row">

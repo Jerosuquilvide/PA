@@ -66,18 +66,13 @@
 
                 if($consulta){
                     header("Location:"."../index.php");
-                }else{ 
-                    echo "NO se inserto correctamente !"; //notificar
                 }
-                
+
                 $pdo = null;
                 $consulta = null;
                 
             }else{
-                echo "ya existe una cuenta con ese email"; //notificar
                 header("Location:"."./AltaUsuario.php");
             }
-            
-
         }
     }
