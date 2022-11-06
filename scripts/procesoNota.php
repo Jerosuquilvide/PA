@@ -13,8 +13,6 @@
         $pwd =  $_ENV['DB_PWD'];
         $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
 
-        // $mysqli = new mysqli("localhost", "root", "", "TP");
-
         if(isset($_POST['titulo']) && isset($_POST['contenido']) && !isset($_POST['estado']) && !isset($_POST['id'])){
             //agregar nota
             $id_u = $_SESSION['id'];
@@ -25,13 +23,8 @@
             $sqli_titulo_com = strpos($titulo, " ' ");
             $sqli_contenido = strpos($contenido, "script");
             $sqli_contenido_com = strpos($contenido, " ' ");
-
-            //Creo las variables validadas para meter a la bd
-            // $tbd = $mysqli->real_escape_string($titulo);
-            // $cbd = $mysqli->real_escape_string($contenido);
             
             if($sqli_contenido == false && $sqli_titulo == false && $sqli_titulo_com == false && $sqli_contenido_com == false){
-                // $resultado = $mysqli->query("INSERT INTO NOTA (U_ID,CONTENIDO,TITULO,ESTADO) VALUES('$id_u', '$cbd', '$tbd', FALSE);");
                 
                 $consulta = $pdo->prepare("
                     INSERT INTO 
@@ -65,9 +58,6 @@
             $estado = $_POST['estado'];
             $tit = $_POST['titulo'];
             $id = $_POST['id'];
-            // $cont = $mysqli->real_escape_string($cont);
-            // $estado = $mysqli->real_escape_string($estado);
-            // $tit = $mysqli->real_escape_string($tit);
             
             settype($cont , "string");
             settype($estado, "int");
@@ -80,9 +70,6 @@
             $sqli_cont_com = strpos($cont, "'");
 
             if($sqli_tit == false && $sqli_tit_com == false && $sqli_cont == false && $sqli_cont_com == false){
-                // $sql = "UPDATE NOTA SET CONTENIDO = '$cont',TITULO = '$tit', ESTADO = $estado WHERE ID = $id ; ";
-
-                // $resultado_modif = $mysqli->query($sql);
 
                 $consulta = $pdo->prepare("
                     UPDATE
@@ -109,8 +96,6 @@
                 header("Location:"."./vistaNota.php");   
             }
         }
-        
-        // $mysqli->close();
 
         $pdo = null;
         $consulta = null;
