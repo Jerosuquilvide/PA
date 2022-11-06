@@ -4,9 +4,9 @@
       <!-- Alertas para la creacion de una nota -->
       <?php if(isset($_SESSION['alta_nota']) && $_SESSION['alta_nota'] == 'ok') : ?>
                   <script type='text/javascript'>
-                         window.onload = function(){
-                            $.notify('Nota agregada correctamente', 'success');
-                         }
+                    window.onload = function(){
+                      $.notify('Nota agregada correctamente', 'success');
+                    }
                   </script>
                   <?php unset($_SESSION['alta_nota'])?>
         <?php endif ; ?>
@@ -14,9 +14,9 @@
 
         <?php if(isset($_SESSION['alta_nota']) && $_SESSION['alta_nota'] == 'fallo') : ?>
                   <script type='text/javascript'>
-                         window.onload = function(){
-                            $.notify('Error al insertar la nota', 'error');
-                         }
+                    window.onload = function(){
+                      $.notify('Error al insertar la nota', 'error');
+                    }
                   </script>
                   <?php unset($_SESSION['alta_nota']) ?>
         <?php endif ; ?>

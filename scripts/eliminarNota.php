@@ -1,22 +1,40 @@
 <?php 
-    session_start();
-    if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido' && isset($_GET['id'])){
-        
-            $mysqli = new mysqli("localhost", "root", "", "TP"); 
-            $id_delete = $_GET['id'];
-            
-            $eliminar_sql = "DELETE  FROM NOTA WHERE ID = $id_delete ; ";
-            $eliminar_sql = $mysqli->real_escape_string($eliminar_sql);
-            $resultado_delete = $mysqli->query($eliminar_sql);
+    require('../vendor/autoload.php');
 
-            if($resultado_delete){
-                $_SESSION['delete'] = 'ok';
-                header("Location:"."./vistaNota.php");           
-            }else{
-                $_SESSION['delete'] = 'fallo';
-                header("Location:"."./vistaNota.php");           
-            }
-            $mysqli->close();
+    $dotenv = Dotenv\Dotenv::createImmutable("../");
+    $dotenv->load();
+
+    session_start();
+
+    if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido' && isset($_GET['id'])){
+        $engine = $_ENV['DB_ENGINE'];
+        $host = $_ENV['DB_HOST'];
+        $name = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $pwd =  $_ENV['DB_PWD'];
+        $pdo = new PDO("$engine:host=$host;dbname=$name", $user, $pwd);
+
+        $id_delete = $_GET['id'];
+        $consulta = $pdo->prepare("
+            DELETE
+            FROM 
+                NOTA 
+            WHERE ID = :id_delete;
+        ");
+        $consulta->bindValue(':id_delete', $id_delete, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if($consulta){
+            $_SESSION['delete'] = 'ok';
+            header("Location:"."./vistaNota.php");           
+        }else{
+            $_SESSION['delete'] = 'fallo';
+            header("Location:"."./vistaNota.php");           
+        }
+
+        $consulta = null;
+        $pdo = null;
+        
     }else{
         header("Location:"."./login.php");
     }
