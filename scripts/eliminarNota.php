@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido' && isset($_GET['id'])){
         
-            $mysqli = new mysqli("localhost", "root", "", "TP"); 
+        $mysqli = new mysqli("");                
             $id_delete = $_GET['id'];
             
             $eliminar_sql = "DELETE  FROM NOTA WHERE ID = $id_delete ; ";

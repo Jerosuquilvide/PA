@@ -24,8 +24,8 @@ $_SESSION['token'] = $token;
         <div class="col-sm-12">
              <!-- Comprobacion de la concexion de bd-->
              <?php       
-            $conn = mysqli_connect('localhost', 'root', '', 'TP');
-            if (!$conn) {
+            $mysqli = new mysqli("");                
+            if (!$mysqli) {
                 die("Connection failed: " . mysqli_connect_error());
             }else{
                 echo "<script type='text/javascript'>
@@ -35,6 +35,7 @@ $_SESSION['token'] = $token;
                            
                 </script>";
             }
+            $mysqli->close();
             ;?>
 
         <?php if(isset($_SESSION['alta_user']) && $_SESSION['alta_user'] == 'ok') : ?>

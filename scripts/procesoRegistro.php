@@ -7,7 +7,7 @@
            $password =  isset($_POST['pswd']) ? $_POST['pswd'] : false;
            if($nombre && $email && $password){
                 //abro la conexion a la bd
-                $mysqli = new mysqli("localhost", "root", "", "TP");                
+                $mysqli = new mysqli("");                
 
                 //Creo las variables validadas para meter a la bd
                 $nbd = $mysqli->real_escape_string($nombre);

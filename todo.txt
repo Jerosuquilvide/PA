@@ -1,6 +1,0 @@
-hay que arreglar los enlaces de arriba (pareciera que esta)
-
-hay que hacer mas lindo cuando se registra un usuario (notificar)
-tambien la notificacion de que esta ok la bd
-
-implementar captcha al registro

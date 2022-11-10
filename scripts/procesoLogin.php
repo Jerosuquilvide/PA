@@ -5,7 +5,7 @@
     //Validacion contra la base de datos
     if(!empty($_POST['rand_code']) && $_POST['rand_code'] == $_SESSION['rand_code'] && $_POST['email'] && $_POST['pswd']){
 
-            $mysqli = new mysqli("localhost", "root", "", "TP"); 
+        $mysqli = new mysqli("");                
             $email = $_POST['email'];
             $password = $_POST['pswd'];
             $consulta_previa = $mysqli->query("SELECT ID,NOMBRE,EMAIL,PASS FROM USUARIO WHERE EMAIL = '$email' ; ");

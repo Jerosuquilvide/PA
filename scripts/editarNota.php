@@ -3,7 +3,7 @@
 <?php if (isset($_SESSION['log']) && $_SESSION['log'] == 'valido' && isset($_GET)) : ?>
     <?php
     $id = $_GET['id'];
-    $mysqli = new mysqli("localhost", "root", "", "TP");
+    $mysqli = new mysqli("");                
     $sql = "SELECT TITULO,CONTENIDO,ESTADO FROM NOTA WHERE ID = $id";
     $consulta = $mysqli->query($sql);
     $nota = $consulta->fetch_array(MYSQLI_ASSOC);

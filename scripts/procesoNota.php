@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['log']) && $_SESSION['log'] == 'valido'){
         //conecto con la bd
-        $mysqli = new mysqli("localhost", "root", "", "TP"); 
+        $mysqli = new mysqli("");                
         if(isset($_POST['titulo']) && isset($_POST['contenido']) && !isset($_POST['estado']) && !isset($_POST['id'])){
                 
                 $titulo = $_POST['titulo'];

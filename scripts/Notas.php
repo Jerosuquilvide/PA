@@ -6,7 +6,7 @@
 
 function tabla(){
     $u_id = $_SESSION['id'];
-    $mysqli = new mysqli('localhost','root','','TP');
+    $mysqli = new mysqli("");                
     $consulta = $mysqli->query("SELECT ID,CONTENIDO,TITULO,ESTADO FROM NOTA WHERE U_ID = $u_id;") ;
     
     if($consulta->num_rows > 0){
